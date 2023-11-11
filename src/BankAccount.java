@@ -21,7 +21,7 @@ public class BankAccount {
                 accounts.add(new Checking(name, ssn, initDeposit));
             }
             else {
-                System.out.println("EROR READING ACCOUNT TYPE");
+                System.out.println("ERROR READING ACCOUNT TYPE");
             }
         }
 

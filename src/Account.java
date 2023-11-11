@@ -1,13 +1,13 @@
-// The parent class for both the Savings & Checking accounts
-// This class is defined as abstract as we'll not create objects of this class
-// Also, it implements the interface IBaseRate to access the base rate
+/* The parent class for both the Savings & Checking accounts
+ This class is defined as abstract as we'll not create objects of this class
+ Also, it implements the interface IBaseRate to access the base rate*/
 public abstract class Account implements IBaseRate {
 
     private static int index = 10000;
 
     // List common properties for both savings and checking accounts
-    private String name;
-    private String ssn;
+    private final String name;
+    private final String ssn;
     private double balance;
 
     protected String accNum;
@@ -15,7 +15,7 @@ public abstract class Account implements IBaseRate {
 
     // Constructor to set base properties and initialize the account
     public Account(String name, String ssn, double initDeposit) {
-        this.index++;
+        index++;
         this.name = name;
         this.ssn = ssn;
         this.balance = initDeposit;
