@@ -9,16 +9,16 @@ public class BankAccount {
         String file = "C:\\Users\\aronn\\IdeaProjects\\zzzLinksFolder\\NewBankAccounts.csv";
         List<String[]> newAccountHolders = CSV.read(file);
         for (String[] accountHolder : newAccountHolders) {
-            String name = accountHolder[0];
-            String ssn = accountHolder[1];
+            String NamesAH = accountHolder[0];
+            String socialSecurityNumbers = accountHolder[1];
             String accountType = accountHolder[2];
-            double initDeposit = Double.parseDouble(accountHolder[3]);
+            double initialDeposit = Double.parseDouble(accountHolder[3]);
 
             if (accountType.equals("Savings")) {
-                accounts.add(new Savings(name, ssn, initDeposit));
+                accounts.add(new Savings(NamesAH, socialSecurityNumbers, initialDeposit));
             }
             else if (accountType.equals("Checking")){
-                accounts.add(new Checking(name, ssn, initDeposit));
+                accounts.add(new Checking(NamesAH, socialSecurityNumbers, initialDeposit));
             }
             else {
                 System.out.println("ERROR READING ACCOUNT TYPE");
