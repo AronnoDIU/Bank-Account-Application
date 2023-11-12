@@ -7,7 +7,11 @@ public class BankAccount {
 
         // Read a CSV File, then create new accounts based on that data
         String file = "C:\\Users\\aronn\\IdeaProjects\\zzzLinksFolder\\NewBankAccounts.csv";
+
+        // Read the CSV file and get the data in a 2D array called newAccountHolders.
         List<String[]> newAccountHolders = CSV.read(file);
+
+        // For each row in the CSV file, create a new account
         for (String[] accountHolder : newAccountHolders) {
 
             String NamesAH = accountHolder[0];
@@ -27,6 +31,7 @@ public class BankAccount {
             }
         }
 
+        // Show information of each account in the list.
         for (Account accountInfo : accounts) {
             System.out.println("\n**********************");
             accountInfo.showInfo();
