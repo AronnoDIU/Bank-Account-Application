@@ -1,7 +1,7 @@
 /* The parent class for both the Savings & Checking accounts
  This class is defined as abstract as we'll not create objects of this class
- Also, it implements the interface IBaseRate to access the base rate*/
-public abstract class Account implements IBaseRate {
+ Also, it implements the interface InterestBaseRate to access the base rate*/
+public abstract class Account implements InterestBaseRate {
 
     private static int index = 10000;
 
