@@ -5,15 +5,17 @@ public class BankAccount {
     public static void main(String[] args) {
         List<Account> accounts = new ArrayList<>();
 
-        //Read a CSV File, then create new accounts based on that data
+        // Read a CSV File, then create new accounts based on that data
         String file = "C:\\Users\\aronn\\IdeaProjects\\zzzLinksFolder\\NewBankAccounts.csv";
         List<String[]> newAccountHolders = CSV.read(file);
         for (String[] accountHolder : newAccountHolders) {
+
             String NamesAH = accountHolder[0];
             String socialSecurityNumbers = accountHolder[1];
             String accountType = accountHolder[2];
             double initialDeposit = Double.parseDouble(accountHolder[3]);
 
+            // Create new accounts based on that data
             if (accountType.equals("Savings")) {
                 accounts.add(new Savings(NamesAH, socialSecurityNumbers, initialDeposit));
             }
@@ -21,13 +23,13 @@ public class BankAccount {
                 accounts.add(new Checking(NamesAH, socialSecurityNumbers, initialDeposit));
             }
             else {
-                System.out.println("ERROR READING ACCOUNT TYPE");
+                System.out.println("ERROR IN CREATING NEW ACCOUNT. PLEASE TRY AGAIN!");
             }
         }
 
-        for (Account acc : accounts) {
+        for (Account accountInfo : accounts) {
             System.out.println("\n**********************");
-            acc.showInfo();
+            accountInfo.showInfo();
         }
     }
 }

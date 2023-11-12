@@ -2,7 +2,7 @@
  This class is defined as abstract as we'll not create objects of this class
  Also, it implements the interface InterestBaseRate to access the base rate*/
 public abstract class Account implements InterestBaseRate {
-
+    // Common properties for both savings and checking accounts
     private static int index = 10000;
 
     // List common properties for both savings and checking accounts

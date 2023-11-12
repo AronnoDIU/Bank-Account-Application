@@ -1,4 +1,3 @@
-//This class inherits the Account class
 public class Checking extends Account {
 
     // List properties specific to a Checking account

@@ -1,4 +1,3 @@
-// This class inherits the Account class
 public class Savings extends Account {
 
     //List properties specific to a Savings account
