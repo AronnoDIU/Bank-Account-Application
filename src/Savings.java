@@ -13,7 +13,7 @@ public class Savings extends Account {
         // Completing the account number
         this.accNum = "1" + this.accNum;
 
-        // Setting up the Safety Deposit Box features
+        // Setting up the Safe deposit box features
         this.setSafetyDepositBox();
     }
 
