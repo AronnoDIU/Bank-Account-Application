@@ -14,8 +14,8 @@ public abstract class Account implements InterestBaseRate {
         this.name = name;
         this.ssn = ssn;
         this.balance = initDeposit;
-        this.accNum = this.setAccountNum();
-        this.setRate();
+        this.accNum = this.setAccountNum(); // this is a method that returns a string
+        this.setRate(); // this is a method that sets the rate
     }
 
     private String setAccountNum() {
@@ -25,14 +25,17 @@ public abstract class Account implements InterestBaseRate {
         return lastTwoSsn + uniqueFive + randThree;
     }
 
+    // this is an abstract method that will be implemented in the child classes
     public abstract void setRate();
 
+    // this is a method that will be inherited by the child classes
     public void deposit(double amount) {
         this.balance += amount;
         System.out.println("Depositing $" + amount);
         this.printBalance();
     }
 
+    // this is a method that will be inherited by the child classes
     public void withdraw(double amount) {
         if (amount > balance) {
             System.out.println("Insufficient funds. Withdrawal denied.");
@@ -43,6 +46,7 @@ public abstract class Account implements InterestBaseRate {
         }
     }
 
+    // this is a method that will be inherited by the child classes
     public void transfer(Account toAccount, double amount) {
         if (amount > balance) {
             System.out.println("Insufficient funds. Transfer denied.");
@@ -54,6 +58,7 @@ public abstract class Account implements InterestBaseRate {
         }
     }
 
+    // this is a method that will be inherited by the child classes
     public void compound() {
         double accruedInterest = this.balance * (this.rate / 100);
         balance += accruedInterest;
