@@ -2,32 +2,22 @@
  This class is defined as abstract as we'll not create objects of this class
  Also, it implements the interface InterestBaseRate to access the base rate*/
 public abstract class Account implements InterestBaseRate {
-    // Common properties for both savings and checking accounts
     private static int index = 10000;
-
-    // List common properties for both savings and checking accounts
     private final String name;
     private final String ssn;
     private double balance;
-
     protected String accNum;
     protected double rate;
 
-    // Constructor to set base properties and initialize the account
     public Account(String name, String ssn, double initDeposit) {
         index++;
         this.name = name;
         this.ssn = ssn;
         this.balance = initDeposit;
-
-        //Set account number
         this.accNum = this.setAccountNum();
-
-        // Set the base rate
         this.setRate();
     }
 
-    // Generating the account number
     private String setAccountNum() {
         String lastTwoSsn = ssn.substring(ssn.length() - 2);
         int uniqueFive = index;
@@ -35,10 +25,8 @@ public abstract class Account implements InterestBaseRate {
         return lastTwoSsn + uniqueFive + randThree;
     }
 
-    // An abstract method to set the base rate depending upon the account type
     public abstract void setRate();
 
-    // List common methods
     public void deposit(double amount) {
         this.balance += amount;
         System.out.println("Depositing $" + amount);
@@ -46,30 +34,39 @@ public abstract class Account implements InterestBaseRate {
     }
 
     public void withdraw(double amount) {
-        this.balance -= amount;
-        System.out.println("Withdrawing $" + amount);
-        this.printBalance();
+        if (amount > balance) {
+            System.out.println("Insufficient funds. Withdrawal denied.");
+        } else {
+            this.balance -= amount;
+            System.out.println("Withdrawing $" + amount);
+            this.printBalance();
+        }
     }
 
-    public void transfer(String toWhere, double amount) {
-        this.balance -= amount;
-        System.out.println("Transferring $" + amount + " to " + toWhere);
-        this.printBalance();
+    public void transfer(Account toAccount, double amount) {
+        if (amount > balance) {
+            System.out.println("Insufficient funds. Transfer denied.");
+        } else {
+            this.balance -= amount;
+            toAccount.deposit(amount);
+            System.out.println("Transferring $" + amount + " to " + toAccount.accNum);
+            this.printBalance();
+        }
     }
 
     public void compound() {
         double accruedInterest = this.balance * (this.rate / 100);
         balance += accruedInterest;
-        System.out.println("Accrued Interest: $"+accruedInterest);
+        System.out.println("Accrued Interest: $" + accruedInterest);
         this.printBalance();
     }
 
     public void printBalance() {
-        System.out.println("Your Balance: " + this.balance);
+        System.out.println("Your Balance: $" + this.balance);
     }
 
     public void showInfo() {
-        System.out.println("NAME: " + this.name + "\nACCOUNT NUMBER: " + this.accNum + "\nBALANCE: " + this.balance
-                + "\nRATE: " + this.rate + "%");
+        System.out.println("NAME: " + this.name + "\nACCOUNT NUMBER: " + this.accNum + "\nBALANCE: $" +
+                this.balance + "\nRATE: " + this.rate + "%");
     }
 }
